@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3Modal from "web3modal";
 
-import { marketplaceAddress } from "../config";
+import { nftmarketaddress } from "../config";
 
 import NFTMarket from "../artifacts/contracts/NFTMarket.sol/NFTMarketplace.json";
 
@@ -13,12 +13,13 @@ export default function Home() {
   useEffect(() => {
     loadNFTs();
   }, []);
+
   async function loadNFTs() {
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(
-      marketplaceAddress,
-      NFTMarketplace.abi,
+      nftmarketaddress,
+      NFTMarket.abi,
       provider
     );
     const data = await contract.fetchMarketItems();
@@ -54,8 +55,8 @@ export default function Home() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      marketplaceAddress,
-      NFTMarketplace.abi,
+      nftmarketaddress,
+      NFTMarket.abi,
       signer
     );
 
@@ -88,7 +89,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-4 bg-black">
-                <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
+                <p className="text-2xl font-bold text-white">{nft.price} Matic</p>
                 <button
                   className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
                   onClick={() => buyNft(nft)}
