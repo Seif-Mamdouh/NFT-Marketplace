@@ -18,7 +18,7 @@ export default function Home() {
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(
       marketplaceAddress,
-      NFTMarketplace.abi,
+      NFTMarket.abi,
       provider
     );
     const data = await contract.fetchMarketItems();
